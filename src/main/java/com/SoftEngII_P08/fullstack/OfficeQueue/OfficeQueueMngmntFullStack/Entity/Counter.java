@@ -3,6 +3,8 @@ package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entit
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "counter")
@@ -15,6 +17,14 @@ public class Counter {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "counter_service",
+            joinColumns = {@JoinColumn(name = "counter_id")},
+            inverseJoinColumns = {@JoinColumn(name = "service_id")}
+    )
+    Set<Service> services = new HashSet<>();
 
     public int getId() {
         return id;

@@ -18,8 +18,11 @@ public class Service {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy="service")
+    @OneToMany(mappedBy = "service")
     private Set<Ticket> tickets;
+
+    @ManyToMany(mappedBy = "services")
+    private Set<Counter> counters = new HashSet<>();
 
     public int getId() {
         return id;
