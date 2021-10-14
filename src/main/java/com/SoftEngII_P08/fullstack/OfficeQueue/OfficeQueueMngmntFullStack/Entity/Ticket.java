@@ -1,37 +1,43 @@
 package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TICKET")
+@Table(name = "ticket")
 @EntityListeners(AuditingEntityListener.class)
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    @Column(name = "ticket_id", nullable = false)
+    private int id;
 
-    @Column(name = "COD_SERVICE", nullable = false)
-    private int codService;
 
-    @Column(name = "SERVED", nullable = false)
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "service_id", nullable = false)
+    private Service service;
+
+
+    @Column(name = "served", nullable = false)
     private int served;
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
-    public int getCodService() {
-        return codService;
+    public Service getService() {
+        return service;
     }
 
-    public void setCodService(int codService) {
-        this.codService = codService;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public int getServed() {
