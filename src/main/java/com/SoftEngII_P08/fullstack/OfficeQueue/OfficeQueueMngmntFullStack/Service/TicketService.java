@@ -5,7 +5,6 @@ import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.ServiceRepository;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,9 +30,15 @@ public class TicketService {
     	return lista;
     }
 
-    public int getCountQueue(int counterId){
-        int countqueue = ticketRepository.countTicketsInServiceQueue(counterId);
-        return countqueue;
+    public int getLongestQueueByCounter(int counterId){ //Find a good name for the function
+        int service_id = ticketRepository.getLongestServiceId(counterId);
+        return service_id;
+    }
+    
+    public Ticket getNextTicket(int counterId){
+        Ticket nextTicket = new Ticket();
+        nextTicket = ticketRepository.getNextTicketByCounter(counterId);
+        return nextTicket;
     }
 
 }
