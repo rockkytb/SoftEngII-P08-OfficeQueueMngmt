@@ -6,6 +6,7 @@ import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Reposi
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Service
@@ -21,5 +22,11 @@ public class TicketService {
         newTicket.setService(service.get());
         newTicket.setServed(0);
         return ticketRepository.save(newTicket);
+    }
+    
+    public List<Ticket> getTicket() {
+    	List<Ticket> lista = ticketRepository.findAll();
+    	System.out.println(lista);
+    	return lista;
     }
 }

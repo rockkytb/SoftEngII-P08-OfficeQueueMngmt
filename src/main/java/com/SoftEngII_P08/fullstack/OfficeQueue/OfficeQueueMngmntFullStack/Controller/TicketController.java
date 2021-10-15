@@ -2,8 +2,13 @@ package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Contr
 
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Ticket;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Service.TicketService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +24,12 @@ public class TicketController {
     @PostMapping("/ticket")
     public Ticket GenerateTicket(@Validated @RequestBody int serviceCode) {
         return ticketService.createTicket(serviceCode);
+    }
+    
+    @GetMapping("/get")
+    public ResponseEntity<?> getTicket () {
+    	List<Ticket> resource= ticketService.getTicket();
+    	return ResponseEntity.ok(resource);
     }
 
 }
