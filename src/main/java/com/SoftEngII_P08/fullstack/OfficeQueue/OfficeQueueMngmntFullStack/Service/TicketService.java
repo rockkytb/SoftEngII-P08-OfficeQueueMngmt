@@ -5,6 +5,7 @@ import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.ServiceRepository;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,4 +30,10 @@ public class TicketService {
     	System.out.println(lista);
     	return lista;
     }
+
+    public int getCountQueue(int serviceId){
+        int countqueue = ticketRepository.countTicketsInServiceQueue(serviceId);
+        return countqueue;
+    }
+
 }

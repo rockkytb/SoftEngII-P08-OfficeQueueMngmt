@@ -33,7 +33,7 @@ public class TicketController {
     public Ticket GenerateTicket(@Validated @RequestBody int serviceCode) {
         return ticketService.createTicket(serviceCode);
     }
-<<<<<<< HEAD
+
     @PostMapping("/counter")
     public Counter GenerateCounter(@Validated @RequestBody  String name) {
         return counterService.createCounter(name);
@@ -44,7 +44,6 @@ public class TicketController {
     	return serviceService.createService(name);
     }
     
-=======
     
     @GetMapping("/get")
     public ResponseEntity<?> getTicket () {
@@ -52,5 +51,4 @@ public class TicketController {
     	return ResponseEntity.ok(resource);
     }
 
->>>>>>> d3f855f1c55b5f0c559ff680abd05a0c4040f786
 }
