@@ -31,8 +31,8 @@ public class TicketService {
     	return lista;
     }
 
-    public int getCountQueue(int serviceId){
-        int countqueue = ticketRepository.countTicketsInServiceQueue(serviceId);
+    public int getCountQueue(int counterId){
+        int countqueue = ticketRepository.countTicketsInServiceQueue(counterId);
         return countqueue;
     }
 
