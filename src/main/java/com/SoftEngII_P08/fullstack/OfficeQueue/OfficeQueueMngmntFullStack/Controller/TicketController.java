@@ -53,8 +53,8 @@ public class TicketController {
     }
 
     @GetMapping("/counter/{id}/nextticket")
-    public ResponseEntity<?> getNextTicket(@PathVariable int counterId){
-        Ticket nextTicket = ticketService.getNextTicket(counterId);
+    public ResponseEntity<?> getNextTicket(@PathVariable int id){
+        Ticket nextTicket = ticketService.getNextTicket(id);
         return ResponseEntity.ok(nextTicket);
     }
 
