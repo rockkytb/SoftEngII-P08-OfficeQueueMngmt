@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* INIZIO MIO CSS */
+.page {
+  min-height: 100vh!important;
+  margin-right:0px;
+}
+
+.verticalLine {
+  
+  width: 1px; /* Line width */
+  border-right: 6px solid #343a40!important;
+  height: 100%;
+  position: absolute;
+  padding-left: 10px;
+
+}
