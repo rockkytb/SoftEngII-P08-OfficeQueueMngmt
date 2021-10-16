@@ -25,7 +25,7 @@ public class ServiceService {
     }
     
     public List<Service> getServiceList(){
-    	return serviceRepository.findAll();
+    	return serviceRepository.getServicesAvailable();
     	
     }
 }
