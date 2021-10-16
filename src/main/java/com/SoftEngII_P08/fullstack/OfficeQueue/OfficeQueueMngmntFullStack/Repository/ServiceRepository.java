@@ -1,6 +1,9 @@
 package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository;
 
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Service;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,6 +23,12 @@ public interface ServiceRepository extends JpaRepository<Service, Integer> {
     public int CountClientServed(
         @Param("id") int serviceId
     );
+	
+	//Get services available
+	@Query(value="	SELECT DISTINCT S.SERVICE_ID, NAME FROM SERVICE S, COUNTER_SERVICE C WHERE S.SERVICE_ID = C.SERVICE_ID",nativeQuery = true)
+	public List<Service> getServicesAvailable ();
+	
+	
 	
 	
     
