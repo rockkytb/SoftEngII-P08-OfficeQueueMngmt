@@ -2,6 +2,9 @@ package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Contr
 
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Service;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Service.ServiceService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +24,14 @@ public class ServiceController {
 
     @GetMapping("/servedClients/{id}")
     public ResponseEntity<?> getCountServedClient(@PathVariable int id) {
-        int count = serviceService.CountServedClientPerServiceId(id);
+        int count = serviceService.countServedClientPerServiceId(id);
         return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/allServices")
+    public ResponseEntity<?> getAllServices(){
+    	List<Service> list = serviceService.getServiceList();
+    	return ResponseEntity.ok(list);
+    	
     }
 }

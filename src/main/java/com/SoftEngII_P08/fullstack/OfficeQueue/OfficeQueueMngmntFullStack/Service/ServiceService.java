@@ -1,6 +1,8 @@
 package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Service;
@@ -18,7 +20,12 @@ public class ServiceService {
         return serviceRepository.save(newService);
     }
     
-    public int CountServedClientPerServiceId(int serviceId) {
+    public int countServedClientPerServiceId(int serviceId) {
     	return serviceRepository.CountClientServed(serviceId);
+    }
+    
+    public List<Service> getServiceList(){
+    	return serviceRepository.findAll();
+    	
     }
 }
