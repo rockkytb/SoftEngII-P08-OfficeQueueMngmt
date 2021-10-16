@@ -24,6 +24,9 @@ public class Ticket {
     @Column(name = "served", nullable = false)
     private int served;
 
+    @Column(name = "number", nullable = false)
+    private int number;
+
     public int getId() {
         return id;
     }
@@ -46,5 +49,13 @@ public class Ticket {
 
     public void setServed(int served) {
         this.served = served;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }
