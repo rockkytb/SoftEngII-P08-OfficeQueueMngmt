@@ -57,5 +57,11 @@ public class TicketController {
         Ticket nextTicket = ticketService.getNextTicket(id);
         return ResponseEntity.ok(nextTicket);
     }
+    
+    @GetMapping("/servedClients/{id}")
+    public ResponseEntity<?> getCountServedClient(@PathVariable int id){
+    	int count = serviceService.CountServedClientPerServiceId(id);
+    	return ResponseEntity.ok(count);
+    }
 
 }

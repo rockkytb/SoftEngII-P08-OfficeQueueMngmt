@@ -17,4 +17,8 @@ public class ServiceService {
         newService.setName(name);
         return serviceRepository.save(newService);
     }
+    
+    public int CountServedClientPerServiceId(int serviceId) {
+    	return serviceRepository.CountClientServed(serviceId);
+    }
 }
