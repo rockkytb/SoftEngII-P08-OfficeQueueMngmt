@@ -44,6 +44,7 @@ public class TicketService {
     public Ticket getNextTicket(int counterId) {
         Ticket nextTicket = new Ticket();
         nextTicket = ticketRepository.getNextTicketByCounter(counterId);
+        nextTicket.setServed(1);
         return nextTicket;
     }
 
