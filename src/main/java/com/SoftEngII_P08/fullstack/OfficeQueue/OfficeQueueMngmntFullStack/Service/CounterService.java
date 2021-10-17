@@ -4,6 +4,8 @@ import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.CounterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 
 
 @org.springframework.stereotype.Service
@@ -18,6 +20,11 @@ public class CounterService {
          
     
         return counterRepository.save(newCounter);
+    }
+
+    public List<Counter> getAllCounter(){
+        List<Counter> allcount = counterRepository.findAll();
+        return allcount;
     }
     
     public int linkSC (int serviceId,int counterId) {

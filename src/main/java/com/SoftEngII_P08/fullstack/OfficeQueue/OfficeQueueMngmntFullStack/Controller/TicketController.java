@@ -34,7 +34,7 @@ public class TicketController {
 
 
     @GetMapping("/get")
-    public ResponseEntity<?> getTicket() {
+    public ResponseEntity<?> getTicket() { //Crashes because service contains ticket and ticket contains service
         List<Ticket> resource = ticketService.getTicket();
         return ResponseEntity.ok(resource);
     }
@@ -43,6 +43,12 @@ public class TicketController {
     public ResponseEntity<?> getNextTicket(@PathVariable int id) {
         Ticket nextTicket = ticketService.getNextTicket(id);
         return ResponseEntity.ok(nextTicket);
+    }
+    
+    @GetMapping("/served/{serviceId}")
+    public ResponseEntity <?> getServedClientsTOS(@PathVariable int serviceId){
+    	int totalServed = ticketService.getClientsTOS(serviceId);
+    	return ResponseEntity.ok(totalServed);
     }
 
 
