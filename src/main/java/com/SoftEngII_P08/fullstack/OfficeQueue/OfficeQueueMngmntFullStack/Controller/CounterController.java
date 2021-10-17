@@ -5,10 +5,9 @@ import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Servic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -26,8 +25,12 @@ public class CounterController {
     public ResponseEntity<?> linkCounterService (@Validated @RequestBody int serviceId, @Validated @RequestBody int counterId) {
     	int response = counterService.linkSC(serviceId, counterId);
     	return ResponseEntity.ok(response);
-    
     }
     
+    @GetMapping("/allcounters")
+    public ResponseEntity<?> getAllCounters(){
+        List<Counter> counters = counterService.getAllCounter();
+        return ResponseEntity.ok(counters);
+    }
 
 }
