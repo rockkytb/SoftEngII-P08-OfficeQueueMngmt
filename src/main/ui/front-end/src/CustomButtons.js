@@ -113,11 +113,11 @@ function ModaleNewCounter(props) {
             props.onHide();
             props.addCounter(counter);
             setCounterName("");
-            setValidated(false);
+            
 
 
         }
-        setValidated(true);
+        setValidated(false);
 
     };
 
@@ -168,6 +168,134 @@ function NewTicketButton(props) {
                 show={modalNewTicketShow}
                 onHide={() => setModalNewTicketShow(false)}
                 newTicket={props.newTicket}
+
+            />
+        </>
+    );
+}
+
+function ModalNewServiceCounter(props) {
+
+    const { show, ...rest } = props;
+    const [selectedService, setSelectedService] = useState("");
+    const [selectedCounter, setSelectedCounter] = useState("");
+    const [validated, setValidated] = useState(false);
+    const [availableServices, setAvailableServices] = useState();
+    const [availableCounters, setAvailableCounters] = useState();
+
+    useEffect(() => {
+        const getAvailableServices = async () => {
+            // call: GET api/v1/allServices
+
+            const response = await fetch('api/v1/allServices');
+            const services = await response;
+            if (response.ok) {
+                setAvailableServices(services);
+            }
+        };
+
+        const getAvailableCounters = async () => {
+            // call: GET api/v1/allcounters
+
+            const response = await fetch('api/v1/allcounters');
+            const counters = await response;
+            if (response.ok) {
+                setAvailableCounters(counters);
+            }
+        };
+
+        getAvailableServices();
+
+        getAvailableCounters();
+
+
+    }, []);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+
+        if (form.checkValidity() === false) {
+            event.stopPropagation();
+        } else {
+            const serviceCounter = {
+                serviceCode: selectedService, 
+                counterId: selectedCounter
+            };
+            props.onHide();
+            props.addServiceCounter(serviceCounter);
+            setSelectedService("");
+            setSelectedCounter("");
+            
+
+
+        }
+        setValidated(false);
+
+    };
+
+    return (
+        <Modal
+            show={show}
+            onHide={rest.onHide}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    New Service to Counter
+                </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Form.Group>
+                        <Form.Label>Select service: </Form.Label>
+                        <select className="ml-1">
+                            {availableServices.map(service =>
+                                <option
+                                    label={service.name}
+                                    id={service.id}
+                                    onChange={ev => setSelectedService(ev.target.checked)}
+                                />
+                            )}
+                        </select >
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Select counter: </Form.Label>
+                        <select className="ml-1">
+                            {availableCounters.map(counter =>
+                                <option
+                                    label={counter.name}
+                                    id={counter.id}
+                                    onChange={ev => setSelectedCounter(ev.target.checked)}
+                                />
+                            )}
+                        </select >
+                    </Form.Group>
+                    <Container className="d-flex justify-content-end">
+                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setSelectedService(); setValidated(false); }}>Close</Button>
+                        <Button className="ml-1" type="submit" variant="success"> New Service to Counter </Button>
+                    </Container>
+                </Form>
+            </Modal.Body>
+
+
+        </Modal>
+    );
+}
+
+function NewServiceCounterButton(props) {
+    const [modalServiceCounterShow, setModalServiceCounterShow] = useState(false);
+
+    return (
+        <>
+            <Button variant="secondary" onClick={() => { setModalServiceCounterShow(true) }}> New Service Counter </Button>
+            <ModalNewServiceCounter
+                show={modalServiceCounterShow}
+                onHide={() => setModalServiceCounterShow(false)}
+                addServiceCounter={props.addServiceCounter}
 
             />
         </>
@@ -267,4 +395,4 @@ function NextClientButton(props) {
         </>
     )
 }
-export { NewCounterButton, NewService, NewTicketButton, NextClientButton }
+export { NewCounterButton, NewService, NewTicketButton, NextClientButton, NewServiceCounterButton }
