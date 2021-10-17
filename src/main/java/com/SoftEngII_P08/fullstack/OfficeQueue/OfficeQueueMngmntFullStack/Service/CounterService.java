@@ -19,4 +19,8 @@ public class CounterService {
     
         return counterRepository.save(newCounter);
     }
+    
+    public int linkSC (int serviceId,int counterId) {
+    	return counterRepository.link(serviceId, counterId);
+    }
 }
