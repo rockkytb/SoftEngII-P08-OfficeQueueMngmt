@@ -50,5 +50,9 @@ public class TicketService {
     public Integer getLastTicketNumber() {
         return ticketRepository.lastTicketNumber();
     }
+    
+    public int getClientsTOS(int serviceId) {
+    	return ticketRepository.countClients(serviceId);
+    }
 
 }

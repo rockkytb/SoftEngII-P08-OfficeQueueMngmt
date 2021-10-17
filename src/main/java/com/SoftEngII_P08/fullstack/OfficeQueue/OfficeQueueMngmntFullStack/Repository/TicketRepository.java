@@ -45,5 +45,10 @@ AND SERVICE_ID =
     @Query(value = "SELECT max(number) FROM Ticket")
     Integer lastTicketNumber();
 
+    //Count client served per type of service
+    @Query (value = "SELECT COUNT (*) FROM TICKET WHERE SERVED = 1 AND SERVICE_ID =:id", nativeQuery = true)
+    public int countClients(
+            @Param("id") int serviceId
+    );
 
 }

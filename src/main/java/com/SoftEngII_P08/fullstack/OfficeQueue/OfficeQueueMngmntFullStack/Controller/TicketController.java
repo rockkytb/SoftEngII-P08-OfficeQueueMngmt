@@ -44,6 +44,12 @@ public class TicketController {
         Ticket nextTicket = ticketService.getNextTicket(id);
         return ResponseEntity.ok(nextTicket);
     }
+    
+    @GetMapping("/served/{serviceId}")
+    public ResponseEntity <?> getServedClientsTOS(@PathVariable int serviceId){
+    	int totalServed = ticketService.getClientsTOS(serviceId);
+    	return ResponseEntity.ok(totalServed);
+    }
 
 
 }
