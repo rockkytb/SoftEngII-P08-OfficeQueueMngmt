@@ -185,9 +185,9 @@ function ModalNewServiceCounter(props) {
 
     useEffect(() => {
         const getAvailableServices = async () => {
-            // call: GET api/v1/allServices
+            // call: GET api/v1/allservices
 
-            const response = await fetch('api/v1/allServices');
+            const response = await fetch('api/v1/allservices');
             const services = await response;
             if (response.ok) {
                 setAvailableServices(services);
@@ -313,7 +313,7 @@ function ModalNewTicket(props) {
         const getAvailableServices = async () => {
             // call: GET api/v1/allServices
 
-            const response = await fetch('api/v1/allServices');
+            const response = await fetch('api/v1/allservices');
             const services = await response;
             if (response.ok) {
                 setAvailableServices(services);

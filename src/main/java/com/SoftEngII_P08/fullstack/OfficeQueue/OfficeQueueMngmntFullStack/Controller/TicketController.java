@@ -34,7 +34,7 @@ public class TicketController {
 
 
     @GetMapping("/get")
-    public ResponseEntity<?> getTicket() {
+    public ResponseEntity<?> getTicket() { //Crashes because service contains ticket and ticket contains service
         List<Ticket> resource = ticketService.getTicket();
         return ResponseEntity.ok(resource);
     }

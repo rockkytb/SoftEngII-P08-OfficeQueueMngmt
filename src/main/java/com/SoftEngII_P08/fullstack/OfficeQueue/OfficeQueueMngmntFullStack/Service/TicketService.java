@@ -36,7 +36,7 @@ public class TicketService {
         return lista;
     }
 
-    public int getLongestQueueByCounter(int counterId) { //Find a good name for the function
+    public int getLongestQueueByCounter(int counterId) { 
         int service_id = ticketRepository.getLongestServiceId(counterId);
         return service_id;
     }
