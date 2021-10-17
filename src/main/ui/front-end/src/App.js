@@ -16,7 +16,7 @@ function App() {
 
   async function nextClient() {
     // call: GET /api/v1/counter/{id}/nextticket
-    const response = await fetch('/api/v1/counter/' + counterId + 'nextticket');
+    const response = await fetch('/api/v1/counter/' + counterId + '/nextticket');
     const nextticket = await response;
     if (response.ok) {
       setNextClientServed(nextticket);

@@ -1,6 +1,6 @@
-import { Button, Modal, Form, Container } from 'react-bootstrap';
-import { useState } from 'react';
-//import { useHistory } from 'react-router-dom'
+import { Button, Modal, Form, Container, Row } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+
 
 function NewCounterButton(props) {
     const [modalCounterShow, setModalCounterShow] = useState(false);
@@ -27,7 +27,7 @@ function NewService(props) {
                 show={modalServiceShow}
                 onHide={() => setModalServiceShow(false)}
                 addService={props.addService}
-                
+
             />
         </>
     );
@@ -49,7 +49,6 @@ function ModaleNewService(props) {
                 name: serviceName
             };
             props.onHide();
-            /*DA AGGIUNGERE GESTIONE ADD AL DB add(name) */
             props.addService(service);
             setServiceName("");
 
@@ -85,12 +84,12 @@ function ModaleNewService(props) {
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Container className="d-flex justify-content-end">
-                    <Button className="mr-1" variant="secondary" onClick={() => {props.onHide(); setServiceName(""); setValidated(false);}}>Close</Button>
-                    <Button className="ml-1" type="submit" variant="success"> Create </Button>
+                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setServiceName(""); setValidated(false); }}>Close</Button>
+                        <Button className="ml-1" type="submit" variant="success"> Create </Button>
                     </Container>
                 </Form>
             </Modal.Body>
-            
+
         </Modal>
     );
 }
@@ -112,7 +111,6 @@ function ModaleNewCounter(props) {
                 name: counterName
             };
             props.onHide();
-            /*DA AGGIUNGERE GESTIONE ADD AL DB add(name) */
             props.addCounter(counter);
             setCounterName("");
             setValidated(false);
@@ -136,7 +134,7 @@ function ModaleNewCounter(props) {
                     Create new Counter
                 </Modal.Title>
             </Modal.Header>
-            
+
             <Modal.Body>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group>
@@ -150,32 +148,122 @@ function ModaleNewCounter(props) {
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Container className="d-flex justify-content-end">
-                    <Button className="mr-1" variant="secondary" onClick={() => {props.onHide(); setCounterName(""); setValidated(false);}}>Close</Button>
-                    <Button className="ml-1" type="submit" variant="success"> Create </Button>
+                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setCounterName(""); setValidated(false); }}>Close</Button>
+                        <Button className="ml-1" type="submit" variant="success"> Create </Button>
                     </Container>
                 </Form>
             </Modal.Body>
-        
-            
+
+
         </Modal>
     );
 }
 
-function NewTicketButton(props){
+function NewTicketButton(props) {
+    const [modalNewTicketShow, setModalNewTicketShow] = useState(false);
     return (
         <>
-            <Button variant="secondary" onClick={() => { props.newTicket() }}>New Ticket</Button>
-            
+            <Button variant="secondary" onClick={() => { setModalNewTicketShow(true) }}>New Ticket</Button>
+            <ModalNewTicket
+                show={modalNewTicketShow}
+                onHide={() => setModalNewTicketShow(false)}
+                newTicket={props.newTicket}
+
+            />
         </>
     );
 }
 
-/* A MODAL IS REQUIRED TO SELECT THE SERVICE FORM THE LIST FOR THE NEW TICKET */
+function ModalNewTicket(props) {
 
-function NextClientButton(props){
-    return(
+    const { show, ...rest } = props;
+    const [selectedService, setSelectedService] = useState("");
+    const [validated, setValidated] = useState(false);
+    const [availableServices, setAvailableServices] = useState();
+
+    useEffect(() => {
+        const getAvailableServices = async () => {
+            // call: GET api/v1/allServices
+
+            const response = await fetch('api/v1/allServices');
+            const services = await response;
+            if (response.ok) {
+                setAvailableServices(services);
+            }
+        };
+
+        getAvailableServices();
+
+
+    }, []);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+
+        if (form.checkValidity() === false) {
+            event.stopPropagation();
+        } else {
+            const service = {
+                serviceCode: selectedService
+            };
+            props.onHide();
+            props.newTicket(service);
+            setSelectedService("");
+            setValidated(false);
+
+
+        }
+        setValidated(true);
+
+    };
+
+    return (
+        <Modal
+            show={show}
+            onHide={rest.onHide}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    New Ticket
+                </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Form.Group>
+                        <Form.Label>Select service: </Form.Label>
+                        <Row className="ml-1">
+                            {availableServices.map(service =>
+                                <Form.Check
+                                    type="radio"
+                                    label={service}
+                                    id={service}
+                                    onChange={ev => setSelectedService(ev.target.checked)}
+                                />
+                            )}
+                        </Row >
+                    </Form.Group>
+                    <Container className="d-flex justify-content-end">
+                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setSelectedService(); setValidated(false); }}>Close</Button>
+                        <Button className="ml-1" type="submit" variant="success"> New Ticket </Button>
+                    </Container>
+                </Form>
+            </Modal.Body>
+
+
+        </Modal>
+    );
+}
+
+
+function NextClientButton(props) {
+    return (
         <>
-        <Button variant="secondary" onClick={() => {props.nextClient() }}>  Next Client  </Button>
+            <Button variant="secondary" onClick={() => { props.nextClient() }}>  Next Client  </Button>
         </>
     )
 }
