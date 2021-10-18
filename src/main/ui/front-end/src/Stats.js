@@ -9,6 +9,7 @@ class Stat {
 }
 
 function GetStats(props) {
+    
   const [services, setServices] = useState();
 
   statUtil = [];
@@ -43,6 +44,8 @@ function GetStats(props) {
 }
 
 function ListStats (){
+
+    GetStats();
 
     return <>
         {statUtil.map(s => {
