@@ -44,8 +44,10 @@ public class TicketService {
     public Ticket getNextTicket(int counterId) {
         Ticket nextTicket = new Ticket();
         nextTicket = ticketRepository.getNextTicketByCounter(counterId);
+        //System.out.println(nextTicket.getId());
         nextTicket.setServed(1);
-        return nextTicket;
+        ticketRepository.save(nextTicket);  
+        return nextTicket; 
     }
 
     public Integer getLastTicketNumber() {
@@ -55,5 +57,8 @@ public class TicketService {
     public int getClientsTOS(int serviceId) {
     	return ticketRepository.countClients(serviceId);
     }
+    
+ 
+    
 
 }
