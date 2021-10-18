@@ -188,7 +188,7 @@ function ModalNewServiceCounter(props) {
             // call: GET api/v1/allservices
 
             const response = await fetch('api/v1/allservices');
-            const services = await response;
+            const services = await response.json();
             if (response.ok) {
                 setAvailableServices(services);
             }
@@ -198,7 +198,7 @@ function ModalNewServiceCounter(props) {
             // call: GET api/v1/allcounters
 
             const response = await fetch('api/v1/allcounters');
-            const counters = await response;
+            const counters = await response.json();
             if (response.ok) {
                 setAvailableCounters(counters);
             }
@@ -253,25 +253,25 @@ function ModalNewServiceCounter(props) {
                     <Form.Group>
                         <Form.Label>Select service: </Form.Label>
                         <select className="ml-1">
-                            {availableServices.map(service =>
+                            {availableServices ? availableServices.map(service =>
                                 <option
                                     label={service.name}
                                     id={service.id}
                                     onChange={ev => setSelectedService(ev.target.checked)}
                                 />
-                            )}
+                            ) : ""}
                         </select >
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Select counter: </Form.Label>
                         <select className="ml-1">
-                            {availableCounters.map(counter =>
+                            {availableCounters ? availableCounters.map(counter =>
                                 <option
                                     label={counter.name}
                                     id={counter.id}
                                     onChange={ev => setSelectedCounter(ev.target.checked)}
                                 />
-                            )}
+                            ) : ""}
                         </select >
                     </Form.Group>
                     <Container className="d-flex justify-content-end">
@@ -311,10 +311,10 @@ function ModalNewTicket(props) {
 
     useEffect(() => {
         const getAvailableServices = async () => {
-            // call: GET api/v1/allServices
+            // call: GET api/v1/allservices
 
             const response = await fetch('api/v1/allservices');
-            const services = await response;
+            const services = await response.json();
             if (response.ok) {
                 setAvailableServices(services);
             }
@@ -365,14 +365,14 @@ function ModalNewTicket(props) {
                     <Form.Group>
                         <Form.Label>Select service: </Form.Label>
                         <Row className="ml-1">
-                            {availableServices.map(service =>
+                            {availableServices ? availableServices.map(service =>
                                 <Form.Check
                                     type="radio"
                                     label={service}
                                     id={service}
                                     onChange={ev => setSelectedService(ev.target.checked)}
                                 />
-                            )}
+                            ) : ""}
                         </Row >
                     </Form.Group>
                     <Container className="d-flex justify-content-end">
