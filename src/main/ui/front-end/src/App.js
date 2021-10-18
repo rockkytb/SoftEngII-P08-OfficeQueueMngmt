@@ -5,6 +5,7 @@ import NavbarCustom from './NavbarCustom.js';
 import { NewCounterButton, NewService, NewTicketButton, NextClientButton, NewServiceCounterButton } from './CustomButtons'
 import { useState } from 'react'
 import { ListGroupQueue } from './ListGroupQueue.js'
+import { ListStats } from './Stats.js'
 
 //import { Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
@@ -164,6 +165,10 @@ function App() {
 
           <Row className="d-flex justify-content-center align-items-center pt-1 pl-3">
             <NewServiceCounterButton addServiceCounter={addServiceCounter} />
+          </Row>
+
+          <Row>
+            <ListStats/>
           </Row>
 
         </Col>
