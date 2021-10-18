@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import NavbarCustom from './NavbarCustom.js';
 import { NewCounterButton, NewService, NewTicketButton, NextClientButton, NewServiceCounterButton } from './CustomButtons'
 import { useState } from 'react'
-import {ListGroupQueue} from './ListGroupQueue.js'
+import { ListGroupQueue } from './ListGroupQueue.js'
 
 //import { Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
@@ -13,13 +13,17 @@ function App() {
   const [nextClientServed, setNextClientServed] = useState(0)
   const [services, setServices] = useState(); /*GET FROM THE SERVER! /api/v1/allServices*/
   const [counters, setCounters] = useState(); /* GET FROM THE SERVER! api missing */
+  const [dirty, setDirty] = useState(false);
 
   async function nextClient() {
     // call: GET /api/v1/counter/{id}/nextticket
     const response = await fetch('/api/v1/counter/' + counterId + '/nextticket');
-    const nextticket = await response;
+    const nextticket = await response.json();
     if (response.ok) {
-      setNextClientServed(nextticket);
+
+      setNextClientServed(nextticket.number);
+      setDirty(true);
+
     }
   }
 
@@ -128,16 +132,16 @@ function App() {
 
         <Col> {/**CUSTOMER FIX TICKET GENERATION: getServices is required to allow the choice of the service*/}
           <div className="verticalLine"></div>
-        
-            <Row className="d-flex justify-content-center align-items-center pt-1 pl-3">
 
-              <h2> Customer </h2>
-            </Row>
+          <Row className="d-flex justify-content-center align-items-center pt-1 pl-3">
 
-            <Row className="d-flex justify-content-center align-items-center pt-1 pl-3">
-              <NewTicketButton newTicket={newTicket} />
-            </Row>
-         
+            <h2> Customer </h2>
+          </Row>
+
+          <Row className="d-flex justify-content-center align-items-center pt-1 pl-3">
+            <NewTicketButton newTicket={newTicket} />
+          </Row>
+
 
 
         </Col>
@@ -171,7 +175,7 @@ function App() {
           </Row>
 
           <Row className="d-flex justify-content-center align-items-center pt-1 pl-3">
-              <ListGroupQueue nextClientServed={nextClientServed} />
+            <ListGroupQueue nextClientServed={nextClientServed} dirty={dirty} setDirty={setDirty} />
           </Row>
         </Col>
       </Row>
