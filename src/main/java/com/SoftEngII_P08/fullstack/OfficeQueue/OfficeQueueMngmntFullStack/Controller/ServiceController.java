@@ -30,7 +30,7 @@ public class ServiceController {
         return ResponseEntity.ok(count);
     }
 
-    @GetMapping("/allservices") //Crashes because service contains ticket and ticket contains service
+    @GetMapping("/allservices") 
     public ResponseEntity<?> getAllServices() {
         List<ServiceResponse> services = serviceService.getServiceList();
         return ResponseEntity.ok(services);
