@@ -19,7 +19,7 @@ public interface ServiceRepository extends JpaRepository<Service, Integer> {
     );
 	
 	//Count total number of served client for a given service ID
-	@Query(value="SELECT COALESCE(0, COUNT(*)) FROM TICKET WHERE SERVED = 1 AND SERVICE_ID = :id", nativeQuery = true)
+	@Query(value="SELECT COALESCE(COUNT(*), 0) FROM TICKET WHERE SERVED = 1 AND SERVICE_ID = :id", nativeQuery = true)
     public int CountClientServed(
         @Param("id") int serviceId
     );
