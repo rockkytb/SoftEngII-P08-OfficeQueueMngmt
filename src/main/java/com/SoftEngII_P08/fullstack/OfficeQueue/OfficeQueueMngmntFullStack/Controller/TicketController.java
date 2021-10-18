@@ -1,5 +1,6 @@
 package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Controller;
 
+import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.ResponseModel.ClientsTOS;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Ticket;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Service.TicketService;
 
@@ -45,8 +46,8 @@ public class TicketController {
     
     @GetMapping("/served/{serviceId}")
     public ResponseEntity <?> getServedClientsTOS(@PathVariable int serviceId){
-    	int totalServed = ticketService.getClientsTOS(serviceId);
-    	return ResponseEntity.ok(totalServed);
+    	ClientsTOS clientsTOS = ticketService.getClientsTOS(serviceId);
+    	return ResponseEntity.ok(clientsTOS);
     }
 
    

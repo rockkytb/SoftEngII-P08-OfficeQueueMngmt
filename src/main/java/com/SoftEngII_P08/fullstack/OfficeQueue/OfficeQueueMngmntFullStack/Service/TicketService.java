@@ -1,13 +1,17 @@
 package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Service;
 
+import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.ResponseModel.ClientsTOS;
+import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.ResponseModel.ServiceResponse;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Service;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Ticket;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.ServiceRepository;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repository.TicketRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class TicketService {
@@ -56,8 +60,12 @@ public class TicketService {
         return ticketRepository.lastTicketNumber();
     }
     
-    public int getClientsTOS(int serviceId) {
-    	return ticketRepository.countClients(serviceId);
+    public ClientsTOS getClientsTOS(int serviceId) {
+        int tot = ticketRepository.countClients(serviceId);
+        ClientsTOS clientsTOS = new ClientsTOS();
+        clientsTOS.setServiceId(serviceId);
+        clientsTOS.setTotServed(tot);
+    	return clientsTOS;
     }
     
  
