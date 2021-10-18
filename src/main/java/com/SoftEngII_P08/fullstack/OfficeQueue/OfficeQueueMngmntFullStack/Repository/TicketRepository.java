@@ -47,7 +47,7 @@ AND SERVICE_ID =
     Integer lastTicketNumber();
 
     //Count client served per type of service
-    @Query (value = "SELECT COALESCE(0, COUNT (*)) FROM TICKET WHERE SERVED = 1 AND SERVICE_ID =:id", nativeQuery = true)
+    @Query (value = "SELECT COALESCE(COUNT (*), 0) FROM TICKET WHERE SERVED = 1 AND SERVICE_ID =:id", nativeQuery = true)
     public int countClients(
             @Param("id") int serviceId
     );
