@@ -5,7 +5,6 @@ package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Repos
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Counter;
 
