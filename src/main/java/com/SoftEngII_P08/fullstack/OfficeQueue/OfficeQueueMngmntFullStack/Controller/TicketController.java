@@ -24,8 +24,8 @@ public class TicketController {
 
 
     @PostMapping("/ticket")
-    public Ticket GenerateTicket(@Validated @RequestBody Integer serviceCode) {
-        return ticketService.createTicket(serviceCode.intValue());
+    public Ticket GenerateTicket(@Validated @RequestBody int serviceCode) {
+        return ticketService.createTicket(serviceCode);
     }
 
 

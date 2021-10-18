@@ -9,19 +9,19 @@ class Stat {
   }
 }
 
+let statUtil = [];
+
 function GetStats(props) {
   const [services, setServices] = useState();
-
-  let statUtil = [];
 
   useEffect(() => {
     const getServices = async () => {
       // call: GET api/v1/allservices
 
       const response = await fetch("api/v1/allservices");
-      const services = await response.json();
+      const services1 = await response.json();
       if (response.ok) {
-        setServices(services);
+        setServices(services1);
       }
     };
 
@@ -36,11 +36,14 @@ function GetStats(props) {
     }
   }
 
-  services.map((service) => {
-    let val = getVal(service.id);
-    let x = new Stat(service.name, val);
-    statUtil.push(x);
-  });
+  if(services != null)
+    services.map((service) => {
+      let val = getVal(service.id);
+      if(val != null){
+        let x = new Stat(service.name, val);
+        statUtil.push(x);
+      }
+    });
 }
 
 function ListStats() {
