@@ -44,10 +44,12 @@ public class TicketService {
     public Ticket getNextTicket(int counterId) {
         Ticket nextTicket = new Ticket();
         nextTicket = ticketRepository.getNextTicketByCounter(counterId);
-        //System.out.println(nextTicket.getId());
-        nextTicket.setServed(1);
-        ticketRepository.save(nextTicket);  
-        return nextTicket; 
+        if(nextTicket != null){
+            nextTicket.setServed(1);
+            ticketRepository.save(nextTicket); 
+            return nextTicket; 
+        }
+        return null;
     }
 
     public Integer getLastTicketNumber() {

@@ -24,8 +24,8 @@ public class TicketController {
 
 
     @PostMapping("/ticket")
-    public Ticket GenerateTicket(@Validated @RequestBody int serviceCode) {
-        return ticketService.createTicket(serviceCode);
+    public Ticket GenerateTicket(@Validated @RequestBody Integer serviceCode) {
+        return ticketService.createTicket(serviceCode.intValue());
     }
 
 
@@ -38,8 +38,9 @@ public class TicketController {
     @GetMapping("/counter/{id}/nextticket") 
     public ResponseEntity<?> getNextTicket(@PathVariable int id) {
         Ticket nextTicket = ticketService.getNextTicket(id);
-       
-        return ResponseEntity.ok(nextTicket);
+        if(nextTicket != null)
+            return ResponseEntity.ok(nextTicket);
+        return ResponseEntity.notFound().build(); //let's try
     }
     
     @GetMapping("/served/{serviceId}")

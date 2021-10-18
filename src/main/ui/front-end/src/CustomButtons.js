@@ -315,6 +315,7 @@ function ModalNewTicket(props) {
 
             const response = await fetch('api/v1/allservices');
             const services = await response.json();
+            console.log(services);
             if (response.ok) {
                 setAvailableServices(services);
             }
@@ -363,17 +364,16 @@ function ModalNewTicket(props) {
             <Modal.Body>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group>
-                        <Form.Label>Select service: </Form.Label>
-                        <Row className="ml-1">
-                            {availableServices ? availableServices.map(service =>
-                                <Form.Check
-                                    type="radio"
-                                    label={service}
-                                    id={service}
-                                    onChange={ev => setSelectedService(ev.target.checked)}
-                                />
-                            ) : ""}
-                        </Row >
+                        <Form.Label>Select service: </Form.Label> 
+                            <select className="ml-1">
+                                {availableServices ? availableServices.map(service =>
+                                    <option
+                                        label={service.name}
+                                        id={service.id}
+                                        onChange={ev => setSelectedService(ev.target.checked)}
+                                    />
+                                ) : ""}
+                            </select >
                     </Form.Group>
                     <Container className="d-flex justify-content-end">
                         <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setSelectedService(); setValidated(false); }}>Close</Button>
