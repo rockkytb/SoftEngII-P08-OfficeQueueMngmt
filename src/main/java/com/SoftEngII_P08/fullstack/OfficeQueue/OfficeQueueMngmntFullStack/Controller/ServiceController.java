@@ -1,5 +1,6 @@
 package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Controller;
 
+import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.ResponseModel.ServiceResponse;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Service;
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Service.ServiceService;
 
@@ -28,10 +29,10 @@ public class ServiceController {
         int count = serviceService.countServedClientPerServiceId(id);
         return ResponseEntity.ok(count);
     }
-    
+
     @GetMapping("/allservices") //Crashes because service contains ticket and ticket contains service
     public ResponseEntity<?> getAllServices() {
-        List<Service> services = serviceService.getServiceList();
+        List<ServiceResponse> services = serviceService.getServiceList();
         return ResponseEntity.ok(services);
     }
 }

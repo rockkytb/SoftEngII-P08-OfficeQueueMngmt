@@ -2,7 +2,10 @@ package com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Servi
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.ResponseModel.ServiceResponse;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Entity.Service;
@@ -10,7 +13,7 @@ import com.SoftEngII_P08.fullstack.OfficeQueue.OfficeQueueMngmntFullStack.Reposi
 
 @org.springframework.stereotype.Service
 public class ServiceService {
-    
+
     @Autowired
     private ServiceRepository serviceRepository;
 
@@ -19,13 +22,18 @@ public class ServiceService {
         newService.setName(name);
         return serviceRepository.save(newService);
     }
-    
+
     public int countServedClientPerServiceId(int serviceId) {
-    	return serviceRepository.CountClientServed(serviceId);
+        return serviceRepository.CountClientServed(serviceId);
     }
-    
-    public List<Service> getServiceList(){
-    	return serviceRepository.getServicesAvailable();
-    	
+
+    public List<ServiceResponse> getServiceList() {
+        ModelMapper modelMapper = new ModelMapper();
+        List<Service> services = serviceRepository.findAll();
+        List<ServiceResponse> serviceResponses = services
+                .stream()
+                .map(service -> modelMapper.map(service, ServiceResponse.class))
+                .collect(Collectors.toList());
+        return serviceResponses;
     }
 }
