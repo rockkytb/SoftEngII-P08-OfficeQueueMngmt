@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ListGroup, Row, Col, ThemeProvider } from "react-bootstrap";
+
 
 class Stat {
   constructor(a, b) {
-    source = a;
-    val = b;
+    this.source = a;
+    this.val = b;
   }
 }
 
 function GetStats(props) {
-    
   const [services, setServices] = useState();
 
-  statUtil = [];
+  let statUtil = [];
 
   useEffect(() => {
     const getServices = async () => {
@@ -37,25 +37,28 @@ function GetStats(props) {
   }
 
   services.map((service) => {
-    val = getVal(service.id);
-    x = new Stat(service.name, val);
+    let val = getVal(service.id);
+    let x = new Stat(service.name, val);
     statUtil.push(x);
   });
 }
 
-function ListStats (){
+function ListStats() {
+  GetStats();
 
-    GetStats();
-
-    return <>
-        {statUtil.map(s => {
-            return<>
+  return (
+    <>
+      {statUtil.map((s) => {
+        return (
+          <>
+          <Row>
             Service {s.source} : {s.val} served
-            </>
-        })}
-    
+            </Row>
+          </>
+        );
+      })}
     </>
-
+  );
 }
 
 export { ListStats };
