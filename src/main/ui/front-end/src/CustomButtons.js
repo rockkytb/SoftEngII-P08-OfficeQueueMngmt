@@ -177,8 +177,8 @@ function NewTicketButton(props) {
 function ModalNewServiceCounter(props) {
 
     const { show, ...rest } = props;
-    const [selectedService, setSelectedService] = useState("");
-    const [selectedCounter, setSelectedCounter] = useState("");
+    const [selectedService, setSelectedService] = useState("1");
+    const [selectedCounter, setSelectedCounter] = useState("1");
     const [validated, setValidated] = useState(false);
     const [availableServices, setAvailableServices] = useState();
     const [availableCounters, setAvailableCounters] = useState();
@@ -224,8 +224,8 @@ function ModalNewServiceCounter(props) {
             };
             props.onHide();
             props.addServiceCounter(serviceCounter);
-            setSelectedService("");
-            setSelectedCounter("");
+            setSelectedService("1");
+            setSelectedCounter("1");
             
 
 
@@ -275,7 +275,7 @@ function ModalNewServiceCounter(props) {
                         </select >
                     </Form.Group>
                     <Container className="d-flex justify-content-end">
-                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setSelectedService(); setValidated(false); }}>Close</Button>
+                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setSelectedService("1"); setValidated(false); }}>Close</Button>
                         <Button className="ml-1" type="submit" variant="success"> New Service to Counter </Button>
                     </Container>
                 </Form>
@@ -305,7 +305,7 @@ function NewServiceCounterButton(props) {
 function ModalNewTicket(props) {
 
     const { show, ...rest } = props;
-    const [selectedService, setSelectedService] = useState("");
+    const [selectedService, setSelectedService] = useState("1");
     const [validated, setValidated] = useState(false);
     const [availableServices, setAvailableServices] = useState();
 
@@ -339,7 +339,7 @@ function ModalNewTicket(props) {
             };
             props.onHide();
             props.newTicket(service);
-            setSelectedService("");
+            setSelectedService("1");
             setValidated(false);
 
 
@@ -379,7 +379,7 @@ function ModalNewTicket(props) {
                             </select >
                     </Form.Group>
                     <Container className="d-flex justify-content-end">
-                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setSelectedService(); setValidated(false); }}>Close</Button>
+                        <Button className="mr-1" variant="secondary" onClick={() => { props.onHide(); setSelectedService("1"); setValidated(false); }}>Close</Button>
                         <Button className="ml-1" type="submit" variant="success"> New Ticket </Button>
                     </Container>
                 </Form>
