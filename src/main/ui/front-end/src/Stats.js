@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+/*import { useState, useEffect } from "react";
 import { ListGroup, Row, Col, ThemeProvider } from "react-bootstrap";
 
 
@@ -11,8 +11,9 @@ class Stat {
 
 let statUtil = [];
 
-function GetStats(props) {
+function GetStats() {
   const [services, setServices] = useState();
+  const [tot, setTot] = useState();
 
   useEffect(() => {
     const getServices = async () => {
@@ -20,6 +21,7 @@ function GetStats(props) {
 
       const response = await fetch("api/v1/allservices");
       const services1 = await response.json();
+      //console.log(services1);
       if (response.ok) {
         setServices(services1);
       }
@@ -28,11 +30,11 @@ function GetStats(props) {
     getServices();
   }, []);
 
-  async function getVal(servId) {
+  const getVal = async (servId) =>{
     const response = await fetch("/api/v1/served/" + servId);
-    const tot = await response.json();
+    const tot1 = await response.json();
     if (response.ok) {
-      return tot;
+      return tot1;
     }
   }
 
@@ -64,4 +66,4 @@ function ListStats() {
   );
 }
 
-export { ListStats };
+export { ListStats };*/

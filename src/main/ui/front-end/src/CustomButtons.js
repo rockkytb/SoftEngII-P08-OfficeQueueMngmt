@@ -333,6 +333,7 @@ function ModalNewTicket(props) {
         if (form.checkValidity() === false) {
             event.stopPropagation();
         } else {
+            console.log(selectedService);
             const service = {
                 serviceCode: selectedService
             };
@@ -365,14 +366,16 @@ function ModalNewTicket(props) {
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label>Select service: </Form.Label> 
-                            <select className="ml-1">
-                                {availableServices ? availableServices.map(service =>
+                            <select className="ml-1" onChange={ev => setSelectedService(ev.target.value)}>
+                                {availableServices ? 
+                                availableServices.map(service =>
                                     <option
                                         label={service.name}
                                         id={service.id}
-                                        onChange={ev => setSelectedService(ev.target.checked)}
-                                    />
-                                ) : ""}
+                                        value={service.id}
+                                    /> 
+                                ) 
+                                : ""}
                             </select >
                     </Form.Group>
                     <Container className="d-flex justify-content-end">

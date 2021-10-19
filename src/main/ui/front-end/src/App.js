@@ -5,7 +5,7 @@ import NavbarCustom from './NavbarCustom.js';
 import { NewCounterButton, NewService, NewTicketButton, NextClientButton, NewServiceCounterButton } from './CustomButtons'
 import { useState } from 'react'
 import { ListGroupQueue } from './ListGroupQueue.js'
-import { ListStats } from './Stats.js'
+//import { ListStats } from './Stats.js'
 
 //import { Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
@@ -95,13 +95,14 @@ function App() {
 
   async function newTicket(service) {
     // call: POST /api/v1/ticket
+    console.log(service);
     return new Promise((resolve, reject) => {
       fetch('/api/v1/ticket', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: service.serviceCode
+        body: JSON.stringify(service.serviceCode)
       }).then((response) => {
         if (response.ok) {
           resolve(response.json());
@@ -168,7 +169,7 @@ function App() {
           </Row>
 
           <Row>
-            <ListStats/>
+            {/*<ListStats/>*/}
           </Row>
 
         </Col>
