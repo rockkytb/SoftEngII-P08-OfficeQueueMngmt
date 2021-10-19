@@ -267,7 +267,7 @@ function ModalNewServiceCounter(props) {
                         <select className="ml-1">
                             {availableCounters ? availableCounters.map(counter =>
                                 <option
-                                    label={counter.name}
+                                    label={counter.id}
                                     id={counter.id}
                                     onChange={ev => setSelectedCounter(ev.target.checked)}
                                 />
