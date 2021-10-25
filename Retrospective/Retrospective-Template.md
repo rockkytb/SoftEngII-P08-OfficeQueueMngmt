@@ -78,17 +78,21 @@ sections:
   We tried to complete as many stories as possible rather than focusing on a single one.
 
 - What lessons did you learn (both positive and negative) in this sprint?
+
    We have learned a new framework for the backend (Spring). In a future project, we will able to work better with it.
    To better divide and assign the tasks. Basically, everyone selected the tasks he/she wanted without an assignment.
    
 
 - Which improvement goals set in the previous retrospective were you able to achieve? 
+
   N/A, this is the first retrospective
   
 - Which ones you were not able to achieve? Why?
+
    N/A, this is the first retrospective
 
 - Improvement goals for the next sprint and how to achieve them (technical tasks, team coordination, etc.)
+
   We will focus on less stories per every sprint and we complete a story before starting another one.
   We will assign tasks in a better way
   We will discuss better about a problem
