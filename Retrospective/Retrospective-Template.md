@@ -31,7 +31,7 @@ sections:
 
 | Story  | # Tasks | Points | Hours est. | Hours actual |
 |--------|---------|--------|------------|--------------|
-| _#0_   |    2    |    -   |     4      |       4(Rocco)+3(AleKri)+3(Filippo)+4(Kricar)+3(Boldi)+2(Kathere)       |
+| _#0_   |    2    |    -   |     4      |       4(Rocco)+3(AleKri)+3(Filippo)+4(Kricar)+3(Boldi)+2(Kathere) + 5 (Davide)       |
 | S202108OQM-3 |    5    |   2     |     5      |      8(Kathere)+1(Kricar) + 2  (Boldi)     |
 | S202108OQM-4 |    3    |   5    |      3      |      1(Kricar)        |
 | S202108OQM-5 |    4    |   5    |      8      |      2 (Filippo) + 6 (AleKri) + 3 (Rocco) +  4 (Kricar)      |
