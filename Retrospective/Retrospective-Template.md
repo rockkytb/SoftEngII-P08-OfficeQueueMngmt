@@ -94,8 +94,11 @@ sections:
 - Improvement goals for the next sprint and how to achieve them (technical tasks, team coordination, etc.)
 
   We will focus on less stories per every sprint and we complete a story before starting another one.
-  We will assign tasks in a better way
-  We will discuss better about a problem
+  
+  We will assign tasks in a better way.
+  
+  We will discuss better about a problem.
+  
   We will try to do better estimation (avoid understimating stories).
   
 
