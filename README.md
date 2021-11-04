@@ -1,7 +1,7 @@
 # SoftEngII-P08-OfficeQueueMngmt
 Office Queue Management solution by P08
 
-Structure of our Application
+Structure of the Application
 
 "src/main/ui" Is the front-end, modify this using visual studio code
 <br>
