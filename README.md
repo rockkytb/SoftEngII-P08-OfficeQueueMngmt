@@ -1,5 +1,5 @@
 # SoftEngII-P08-OfficeQueueMngmt
-Office Queue Management solution by P08
+Office Queue Management solution provided by P08
 
 Structure of the Application
 
